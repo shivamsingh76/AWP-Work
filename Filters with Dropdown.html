@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	
+
+	<title>Filters with Dropdown</title>
+</head>
+<body>
+<header>
+  <div id='nav-container' class='container'>
+  	<div class='navbar-nav'>
+  		<div class='navbar-brand'>Filters with Dropdown | Mutation Functions </div>
+  		
+  	</div>
+  </div>
+</header>
+
+<div id='form-container' class="container text-center">
+	
+	<form v-on:submit.prevent="onSubmit">
+			<span class='col-xs-6'>
+				<input v-model='newItem' type = "text"  placeholder = "Type new item"><br>
+			
+				<button id='unshift-btn' @click='frontPush()'>Unshift</button>
+				<button id='push-btn' @click='normalPush()'>Push</button>
+				<button class='del-btn' @click='frontPop()'>Shift</button>
+				<button class='del-btn' @click='normalPop()'>Pop</button>
+				
+			</span>
+			<span class='col-xs-6'>
+				<label >Select filter: &nbsp;</label>
+				<select v-model='selectedFilter' name="filter" id='select-filter'>
+					<option value="uppercase">Uppercase</option>
+					<option value="lowercase">Lowercase</option>
+					<option value="capitalize">Capitalize</option>
+					<option value="reverse">Reverse</option>
+				</select>
+			</span>	
+				
+	
+	</form>
+				
+			
+			<ul class="list-group list-group-flush ">
+				<h2 v-show="list.length > 0"><u>List Items:</u></h2>
+				<li class="list-group-item" v-for='(item,index) in list'>
+					<h3 v-show='selectedFilter === "uppercase"'>{{index}} - {{item | uppercase}}</h3>
+					<h3 v-show='selectedFilter === "lowercase"'>{{index}} - {{item | lowercase}}</h3>
+					<h3 v-show='selectedFilter === "capitalize"'>{{index}} - {{item | capitalize}}</h3>
+					<h3 v-show='selectedFilter === "reverse"'>{{index}} - {{item | reverse}}</h3>
+				</li>
+			</ul>
+
+			
+		
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+<script type="text/javascript">
+	let app =	new Vue({
+		el: '#form-container',
+
+		data: {
+			newItem: '',
+			selectedFilter: 'capitalize',
+			list: []
+			
+		},
+
+		
+		filters: {
+			uppercase(text){
+				return text.toUpperCase();
+			},
+
+			lowercase(text){
+				return text.toLowerCase();
+			},
+
+			capitalize (value) {
+  			value = value.toString().toLowerCase().split(' ');
+    		return value.map(function(item) {
+      		return item.charAt(0).toUpperCase() + item.slice(1)
+    		}).join(' ')
+    		},
+
+			reverse(text){
+			 return	text.split('').reverse().join('');
+			}
+		},
+
+		methods:{
+			frontPush(){
+				if(this.newItem !== ''){
+				this.list.unshift(this.newItem);
+				this.newItem = '';
+
+				localStorage.setItem('itemList',JSON.stringify(this.list));
+				}
+			},
+
+			normalPush(){
+				if(this.newItem !== ''){
+				this.list.push(this.newItem);
+				this.newItem = '';
+				console.log('inside push');
+				localStorage.setItem('itemList',JSON.stringify(this.list));
+				}
+			},
+
+			normalPop(){
+				this.list.pop();
+
+				localStorage.setItem('itemList',JSON.stringify(this.list));
+			},
+
+			frontPop(){
+				this.list.shift();
+
+				localStorage.setItem('itemList',JSON.stringify(this.list));
+			},
+
+			// saveList(){
+			// 	console.log('List saved!');
+			// 	localStorage.setItem('itemList',this.list);
+			// }
+
+		}
+		
+	}); 
+</script>
+
+
+
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src='js/filtersWithDropdown.js'></script>
+</body>
+</html>

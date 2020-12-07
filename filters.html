@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	
+
+	<title>Filters</title>
+</head>
+<body>
+<header>
+  <div id='nav-container' class='container'>
+  	<div class='navbar-nav'>
+  		<div class='navbar-brand'>Vue js FILTERS</div>
+  		
+  	</div>
+  </div>
+</header>
+
+<div id='form-container' class="container text-center">
+	
+	<form>
+
+		<div id='filter-row' class="row">
+			<span class="col-xs-3 filter-col">Uppercase:<br><input v-model="text1" type="text"   placeholder="Type some text">
+			<h1 class='result' class='text-center'>{{text1 | uppercase}}</h1>
+			</span>
+			
+			<span class="col-xs-3 filter-col">Lowercase:<br><input v-model="text2" type="text"   placeholder="Type some text"></button>
+			<h1 class='result' class='text-center'>{{text2 | lowercase}}</h1>
+			</span>
+
+			
+			<span class="col-xs-3 filter-col">Capitalize:<br><input v-model="text3" type="text"   placeholder="Type some text">
+				<h1 class='result' class='text-center'>{{text3 | capitalize}}</h1>
+			</span>
+			
+			<span class="col-xs-3 filter-col">Reverse:<br><input v-model="text4" type="text"   placeholder="Type some text">
+				<h1 class='result' class='text-center'>{{text4 | reverse}}</h1>
+			</span>
+
+			
+		</div>
+	</form>
+	
+
+
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+<script type="text/javascript">
+	new Vue({
+		el: '#form-container',
+
+		data: {
+			text1: '',
+			text2: '',
+			text3: '',
+			text4: '',
+			text5: '',
+		},
+
+		filters : {
+			uppercase(text){
+				return text.toUpperCase();
+			},
+
+			lowercase(text){
+				return text.toLowerCase();
+			},
+
+			capitalize (value) {
+  			value = value.toString().toLowerCase().split(' ');
+    		return value.map(function(item) {
+      		return item.charAt(0).toUpperCase() + item.slice(1)
+    		}).join(' ')
+    		},
+
+			reverse(text){
+			 return	text.split('').reverse().join('');
+			}
+
+
+
+		}
+	}); 
+</script>
+
+
+
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

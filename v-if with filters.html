@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	
+
+	<title>Conditional Rendering with Filters</title>
+</head>
+<body>
+<header>
+  <div id='nav-container' class='container'>
+  	<div class='navbar-nav'>
+  		<div class='navbar-brand'>v-if v-else with Filters</div>
+  		
+  	</div>
+  </div>
+</header>
+
+<div id='form-container' class="container text-center">
+	
+	<form>
+
+			<span class='col-xs-4'>Should I display image?<br>
+				<input v-model="text1" type="text"   placeholder="Give your response"><br>
+			
+			<span v-if="text1.toLowerCase() ==='yes'">	
+			<img  src="./images/vue_image.png">
+			<p>Your response in uppercase : {{text1 | uppercase}}</p><br>
+			<p>Your response in lowercase : {{text1 | lowercase}}</p><br>
+			<p>Your Capitalized response : {{text1 | capitalize}}</p><br>
+			</span>
+
+			<span v-else>
+				<p>Reverse of your response : {{text1 | reverse}}</p>
+			</span>
+
+			</span>
+			
+			<span class='col-xs-4'>What is 100^0?<br>
+				<input v-model="value" type="number"  placeholder="Give your response"><br>
+			
+			<img v-if="value == 1" src="./images/vue_image.png">
+			<p v-else>Give correct answer to render image.</p>
+			</span>
+
+
+			<span class='col-xs-4'>Enable link?<br>
+				<input v-model="enable" type="radio"  name='response'  value='yes'>&nbsp;<label>Yes</label><br>
+
+				<input v-model="enable" type="radio"  name='response' value="no">&nbsp;<label>No</label><br>
+
+			
+			<a v-if="enable === 'yes'" href="https://vuejs.org/v2/guide/conditional.html" title='Official Site' target="_blank">Conditional Rendering in Vue js</a>
+			<p v-else>Link is not being rendered.</p>
+			</span>
+
+			
+		</div>
+	</form>
+	
+
+
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+<script type="text/javascript">
+	new Vue({
+		el: '#form-container',
+
+		data: {
+			text1: '',
+			value: '',
+			enable: ''
+			
+		},
+
+		
+		filters: {
+			uppercase(text){
+				return text.toUpperCase();
+			},
+
+			lowercase(text){
+				return text.toLowerCase();
+			},
+
+			capitalize (value) {
+  			value = value.toString().toLowerCase().split(' ');
+    		return value.map(function(item) {
+      		return item.charAt(0).toUpperCase() + item.slice(1)
+    		}).join(' ')
+    		},
+
+			reverse(text){
+			 return	text.split('').reverse().join('');
+			}
+		}
+
+
+		
+	}); 
+</script>
+
+
+
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
