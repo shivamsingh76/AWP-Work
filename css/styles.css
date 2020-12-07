@@ -74,7 +74,6 @@ img{
 
 .list-group-item{
 	
-	
 }
 
 .list-group{
@@ -82,6 +81,22 @@ img{
 	margin-top: 80px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	opacity: .8;
-	background-color: white;
+	}
+
+.list-group a{
+	font-weight: bolder;
 }
 
+a.dark{
+	background-color: #bdc3c7;
+	color: #34495e;
+}
+
+a.dark:hover{
+	background-color: #95a5a6;
+	color: #34495e;
+}
+
+a h4{
+	font-weight: bold;
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	
+
+	<title>AWP Work</title>
+</head>
+<body>
+<header>
+  <div id='nav-container' class='container'>
+  	<div class='navbar-nav'>
+  		<div class='navbar-brand'>Index</div>
+  		
+  	</div>
+  </div>
+</header>
+
+<div id='index-container' class="container text-center">
+	
+	<div class='list-group'>
+		<a  href = "filters.html" class="list-group-item" ><h4>Filters</h4></a>
+		<a  href = "if_else_vue.html" class="list-group-item dark" ><h4>v-if v-else v-show</h4></a>
+		<a  href = "v-if with filters.html" class="list-group-item" ><h4>v-if with filters</h4></a>
+		<a  href = "Filters with Dropdown.html" class="list-group-item dark" ><h4>Mutation function and Filters with Dropdown</h4></a>
+	</div>
+					
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+<script type="text/javascript">
+	let app =	new Vue({
+		el: '#index-container',
+
+		data: {
+
+			list: [
+			{
+				title:'Filters',
+				link:'filters.html'
+			},
+			{	title: 'v-if v-else v-show',
+				link: 'if_else_vue.html'
+			},
+			{	title: 'v-if with filters',
+				link: 'v-if with filters.html'
+			},
+			{	title: 'Mutation function and Filters with Dropdown',
+				link: 'Filters with Dropdown.html'
+			}]
+			
+		},
+
+		
+		filters: {
+			uppercase(text){
+				return text.toUpperCase();
+			},
+
+			lowercase(text){
+				return text.toLowerCase();
+			},
+
+			capitalize (value) {
+  			value = value.toString().toLowerCase().split(' ');
+    		return value.map(function(item) {
+      		return item.charAt(0).toUpperCase() + item.slice(1)
+    		}).join(' ')
+    		},
+
+			reverse(text){
+			 return	text.split('').reverse().join('');
+			}
+		},
+
+		methods:{
+			
+		}
+		
+	}); 
+</script>
+
+
+
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
