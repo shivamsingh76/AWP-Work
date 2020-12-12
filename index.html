@@ -24,10 +24,7 @@
 <div id='index-container' class="container text-center">
 	
 	<div class='list-group'>
-		<a  href = "filters.html" class="list-group-item" ><h4>Filters</h4></a>
-		<a  href = "if_else_vue.html" class="list-group-item dark" ><h4>v-if v-else v-show</h4></a>
-		<a  href = "v-if with filters.html" class="list-group-item" ><h4>v-if with filters</h4></a>
-		<a  href = "Filters with Dropdown.html" class="list-group-item dark" ><h4>Mutation function and Filters with Dropdown</h4></a>
+		<a  v-bind:href = "item.link" class="list-group-item" v-for='item in list'><h4>{{item.title}}</h4></a>
 	</div>
 					
 </div>
